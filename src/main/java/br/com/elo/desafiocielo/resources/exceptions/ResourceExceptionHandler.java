@@ -41,6 +41,7 @@ public class ResourceExceptionHandler {
 		return ResponseEntity.status(status).body(body);
 	}
 	
+		
 	// Exceções lançadas em função da validação do Bean Validation 
 	@ExceptionHandler(MethodArgumentNotValidException.class) // Essa exceção pertence ao framework
 	public ResponseEntity<StandardError> argumentoMetodoNaoValidoExcecao(MethodArgumentNotValidException e,HttpServletRequest request) {

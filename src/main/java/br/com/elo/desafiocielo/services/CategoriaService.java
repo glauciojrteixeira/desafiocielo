@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class CategoriaService {
 	
-	// Declara a dependencia ao objeto repository
+	// Declara a injeção de dependencia ao objeto repository
 	@Autowired
 	private CategoriaRepository categoriaRepo;
 	

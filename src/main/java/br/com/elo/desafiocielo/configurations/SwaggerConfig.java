@@ -49,7 +49,6 @@ public class SwaggerConfig {
 				.message("Recurso criado!")
 				.headersWithDescription(map)
 				.build();
-		
 	}
 	
 	@Bean
@@ -67,7 +66,7 @@ public class SwaggerConfig {
 //				.host("http://localhost:8081/api/")
 				
 				.select()
-				.apis(RequestHandlerSelectors.basePackage("br.com.cenarioesolucao.cursoMC.resources"))
+				.apis(RequestHandlerSelectors.basePackage("br.com.elo.desafiocielo.resources"))
 //				.apis(RequestHandlerSelectors.any())
 				.paths(PathSelectors.any())
 				.build()
@@ -76,16 +75,16 @@ public class SwaggerConfig {
 	
 	private ApiInfo apiInfo() {
 		return new ApiInfo(
-				"API do Projeto CursoMC", 
-				"Esta API é utilizada no projeto CursoMC para a empresa X", 
+				"API do Projeto Desafio Cielo", 
+				"Esta API é utilizada no projeto Desafio Cielo para a empresa Stefanini", 
 				"Versão API 1.0", 
-				"https://www.cenarioesolucao.com.br/terms",
+				"https://www.elo.com.br/terms",
 				new Contact(
 						"Gláucio Teixeira", 
-						"cenarioesolucao.com.br/user/glaucio-teixeira", 
+						"elo.com.br/user/glaucio-teixeira", 
 						"glaucio.teixeira@outlook.com"), 
-				"Uso permitido sob licença GPL",
-				"https://www.cenarioesolucao.com.br/terms", 
+				"Uso permitido sob licença.",
+				"https://www.elo.com.br/terms", 
 				Collections.emptyList());
 	}
 

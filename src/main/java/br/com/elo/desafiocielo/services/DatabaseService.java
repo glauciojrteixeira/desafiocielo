@@ -1,5 +1,6 @@
 package br.com.elo.desafiocielo.services;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -10,9 +11,14 @@ import org.springframework.stereotype.Service;
 
 import br.com.elo.desafiocielo.domains.Categoria;
 import br.com.elo.desafiocielo.domains.Cliente;
+import br.com.elo.desafiocielo.domains.ContaCorrente;
+import br.com.elo.desafiocielo.domains.ControleLancamento;
+import br.com.elo.desafiocielo.domains.DomicilioBancario;
 import br.com.elo.desafiocielo.domains.Endereco;
 import br.com.elo.desafiocielo.domains.Estado;
 import br.com.elo.desafiocielo.domains.ItemPedido;
+import br.com.elo.desafiocielo.domains.LancamentoContaCorrente;
+import br.com.elo.desafiocielo.domains.LancamentoFinanceiro;
 import br.com.elo.desafiocielo.domains.Municipio;
 import br.com.elo.desafiocielo.domains.Pagamento;
 import br.com.elo.desafiocielo.domains.PagamentoComBoleto;
@@ -24,9 +30,14 @@ import br.com.elo.desafiocielo.domains.enums.TipoCliente;
 import br.com.elo.desafiocielo.domains.enums.TipoPerfil;
 import br.com.elo.desafiocielo.repositories.CategoriaRepository;
 import br.com.elo.desafiocielo.repositories.ClienteRepository;
+import br.com.elo.desafiocielo.repositories.ContaCorrenteRepository;
+import br.com.elo.desafiocielo.repositories.ControleLancamentoRepository;
+import br.com.elo.desafiocielo.repositories.DomicilioBancarioRepository;
 import br.com.elo.desafiocielo.repositories.EnderecoRepository;
 import br.com.elo.desafiocielo.repositories.EstadoRepository;
 import br.com.elo.desafiocielo.repositories.ItemPedidoRepository;
+import br.com.elo.desafiocielo.repositories.LancamentoContaCorrenteRepository;
+import br.com.elo.desafiocielo.repositories.LancamentoFinanceiroRepository;
 import br.com.elo.desafiocielo.repositories.MunicipioRepository;
 import br.com.elo.desafiocielo.repositories.PagamentoRepository;
 import br.com.elo.desafiocielo.repositories.PedidoRepository;
@@ -59,6 +70,18 @@ public class DatabaseService {
 	private ItemPedidoRepository itemPedidoRepo;
 	
 	@Autowired
+	private DomicilioBancarioRepository domicilioBancarioRepo;
+	@Autowired
+	private ContaCorrenteRepository contaCorrenteRepo;
+	@Autowired
+	private ControleLancamentoRepository controleLancamentoRepo;
+	@Autowired
+	private LancamentoContaCorrenteRepository lancamentoContaCorrenteRepo;
+	@Autowired
+	private LancamentoFinanceiroRepository lancamentoFinanceiroRepo;
+	
+	
+	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
 	/**
@@ -66,6 +89,44 @@ public class DatabaseService {
 	 * @throws ParseException
 	 */
 	public void instantiateDatabaseTest() throws ParseException {
+		SimpleDateFormat sdfSemHora = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		
+		
+		DomicilioBancario domicilioBancario_01 = new DomicilioBancario(null, "123", "1", null);
+		DomicilioBancario domicilioBancario_02 = new DomicilioBancario(null, "123", "2", null);
+		DomicilioBancario domicilioBancario_03 = new DomicilioBancario(null, "321", "1", null);
+		domicilioBancarioRepo.saveAll(Arrays.asList(domicilioBancario_01, domicilioBancario_02, 
+				domicilioBancario_03));
+		
+		
+		ContaCorrente contaCorrente_01 = new ContaCorrente(null, "00000000065470", domicilioBancario_01, null);
+		ContaCorrente contaCorrente_02 = new ContaCorrente(null, "00000000065400", domicilioBancario_01, null);
+		ContaCorrente contaCorrente_03 = new ContaCorrente(null, "00000000065401", domicilioBancario_01, null);
+		ContaCorrente contaCorrente_04 = new ContaCorrente(null, "00000000065402", domicilioBancario_01, null);
+		contaCorrenteRepo.saveAll(Arrays.asList(contaCorrente_01, contaCorrente_02, contaCorrente_03, 
+				contaCorrente_04));
+		
+		
+		LancamentoContaCorrente lancamentoContaCorrente_01 = new LancamentoContaCorrente(null, 64320236054L, "Pago", "regular", contaCorrente_01, null, null);
+		LancamentoContaCorrente lancamentoContaCorrente_02 = new LancamentoContaCorrente(null, 64320236054L, "Pago", "regular", contaCorrente_01, null, null);
+		lancamentoContaCorrenteRepo.saveAll(Arrays.asList(lancamentoContaCorrente_01, lancamentoContaCorrente_02));
+		
+		
+		LancamentoFinanceiro lancamentoFinanceiro_01 = new LancamentoFinanceiro(null, "Ativo", lancamentoContaCorrente_02);
+		lancamentoFinanceiroRepo.saveAll(Arrays.asList(lancamentoFinanceiro_01));
+		
+		
+		ControleLancamento controleLancamento_01 = new ControleLancamento(null, sdfSemHora.parse("03/06/2016"), sdfSemHora.parse("03/06/2016"), 42236790L, "LA-56", 1, 
+				"BANCO ABCD S.A.             ", 22, "12996721", "1597", 11499.10F, 1464922800000L, 1464922800000L, lancamentoContaCorrente_01);
+		ControleLancamento controleLancamento_02 = new ControleLancamento(null, sdfSemHora.parse("02/06/2016"), sdfSemHora.parse("02/06/2016"), 42592397L, "LA-56", 25, 
+				"BANCO ABCD S.A.             ", 2, "12996721", "1597", 1960.0F, 1464836400000L, 1464836400000L, lancamentoContaCorrente_02);
+		controleLancamentoRepo.saveAll(Arrays.asList(controleLancamento_01, controleLancamento_02));
+		
+		
+		/*
+		 * 
+		 */
 		Categoria cat1 = new Categoria(null, "Informática");
 		Categoria cat2 = new Categoria(null, "Escritório");
 		Categoria cat3 = new Categoria(null, "Cama mesa e banho");
@@ -218,7 +279,7 @@ public class DatabaseService {
 		clienteRepo.saveAll(Arrays.asList(cli1, cli2));
 		enderecoRepo.saveAll(Arrays.asList(e1, e2, e3));
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+//		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		
 		Pedido ped1 = new Pedido(null, sdf.parse("30/09/2017 10:32"), cli1, e1);
 		Pedido ped2 = new Pedido(null, sdf.parse("10/10/2017 19:35"), cli1, e2);
