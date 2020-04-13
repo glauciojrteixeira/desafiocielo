@@ -9,8 +9,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import br.com.elo.desafiocielo.services.DatabaseService;
-import br.com.elo.desafiocielo.services.EmailService;
-import br.com.elo.desafiocielo.services.EmailSmtpService;
 
 @Configuration
 @Profile("dev")
@@ -42,13 +40,6 @@ public class ProfileDevConfig {
 		return true;
 	}
 	
-	/**
-	 * Método :: Retorna uma instancia da interface EmailService como EmailSmtpService
-	 * @return
-	 */
-	@Bean
-	public EmailService emailService() {
-		return new EmailSmtpService();
-	}
+	
 
 }

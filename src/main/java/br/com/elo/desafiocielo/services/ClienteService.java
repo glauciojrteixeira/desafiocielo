@@ -1,7 +1,5 @@
 package br.com.elo.desafiocielo.services;
 
-import java.awt.image.BufferedImage;
-import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,17 +13,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import br.com.elo.desafiocielo.domains.Cliente;
-import br.com.elo.desafiocielo.domains.Endereco;
-import br.com.elo.desafiocielo.domains.Municipio;
 import br.com.elo.desafiocielo.domains.enums.TipoCliente;
 import br.com.elo.desafiocielo.domains.enums.TipoPerfil;
 import br.com.elo.desafiocielo.dto.ClienteDTO;
 import br.com.elo.desafiocielo.dto.ClienteNewDTO;
 import br.com.elo.desafiocielo.repositories.ClienteRepository;
-import br.com.elo.desafiocielo.repositories.EnderecoRepository;
 import br.com.elo.desafiocielo.securities.UserSpringSecurity;
 import br.com.elo.desafiocielo.services.exceptions.AutorizacaoExcecao;
 import br.com.elo.desafiocielo.services.exceptions.ObjetoNaoEncontradoExcecao;
@@ -38,17 +32,10 @@ public class ClienteService {
 	// Declara a dependencia ao objeto repository
 	@Autowired
 	private ClienteRepository clienteRepo;
-	@Autowired
-	private EnderecoRepository enderecoRepo;
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
-	@Autowired
-	private AwsS3Service awsS3Service;
-	
-	@Autowired
-	private ImageService imageService;
 	
 	
 	@Value("${img.prefix.client.profile}")
@@ -74,7 +61,7 @@ public class ClienteService {
 	public Cliente guardarEntidade(Cliente entity) {
 		entity.setId(null);
 		entity = clienteRepo.save(entity);
-		enderecoRepo.saveAll(entity.getEnderecos());
+		
 		
 		return entity;
 	}
@@ -133,11 +120,7 @@ public class ClienteService {
 	public Cliente fromDTO(ClienteNewDTO objetoDTO) {
 		Cliente cliente = new Cliente(null, objetoDTO.getNome(), objetoDTO.getEmail(), objetoDTO.getCpfOuCnpj(), 
 				TipoCliente.toEnum(objetoDTO.getTipoCliente()), passwordEncoder.encode(objetoDTO.getSenha()));
-		Municipio municipio = new Municipio(objetoDTO.getMunicipioId(), null, null);
-		Endereco endereco = new Endereco(null, objetoDTO.getLogradouro(), objetoDTO.getNumero(), 
-				objetoDTO.getComplemento(), objetoDTO.getBairro(), objetoDTO.getCep(), cliente, municipio);
 		
-		cliente.getEnderecos().add(endereco);
 		cliente.getTelefones().add(objetoDTO.getTelefone1());
 		if (objetoDTO.getTelefone2() != null) {
 			cliente.getTelefones().add(objetoDTO.getTelefone2());
@@ -157,19 +140,5 @@ public class ClienteService {
 		newEntity.setEmail(entity.getEmail());
 	}
 	
-	public URI uploadProfilePicture(MultipartFile multipartFile) {
-		UserSpringSecurity user = UserService.authenticated();
-		if (user == null) {
-			throw new AutorizacaoExcecao("Acesso negado!");
-		}
-		
-		BufferedImage jpgImage = imageService.getJpgImageFromFile(multipartFile);
-		jpgImage = imageService.cropSquare(jpgImage);
-		jpgImage = imageService.resize(jpgImage, this.size);
-		
-		String fileName = prefixo + user.getId() + ".jpg";
-		
-		return awsS3Service.uploadFile(imageService.getInputStream(jpgImage, "jpg"), fileName, "image");
-		
-	}
+	
 }

@@ -1,13 +1,10 @@
 package br.com.elo.desafiocielo.domains;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -16,7 +13,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -50,8 +46,6 @@ public class Cliente implements Serializable {
 	@JsonIgnore
 	private String senha;
 	
-	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
-	private List<Endereco> enderecos = new ArrayList<>();
 	
 	/* Telefone representado por um conjunto de string não repetivel
 	 * Entidade fraca dispensa existencia de classe
@@ -64,9 +58,6 @@ public class Cliente implements Serializable {
 	@CollectionTable(name = "CLIENTEPERFIL")
 	private Set<Integer> perfis = new HashSet<>();
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "cliente")
-	private List<Pedido> pedidos = new ArrayList<>();
 	
 
 	/**
@@ -119,13 +110,6 @@ public class Cliente implements Serializable {
 		perfis.add(tipoPerfil.getCod());
 	}
 	
-	public List<Pedido> getPedidos() {
-		return pedidos;
-	}
-	public void setPedidos(List<Pedido> pedidos) {
-		this.pedidos = pedidos;
-	}
-	
 	
 	public Integer getId() {
 		return id;
@@ -152,12 +136,7 @@ public class Cliente implements Serializable {
 		this.cpfOuCnpj = cpfOuCnpj;
 	}
 	
-	public List<Endereco> getEnderecos() {
-		return enderecos;
-	}
-	public void setEnderecos(List<Endereco> enderecos) {
-		this.enderecos = enderecos;
-	}
+
 	public Set<String> getTelefones() {
 		return telefones;
 	}
