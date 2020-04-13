@@ -6,7 +6,6 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,6 +24,13 @@ import br.com.elo.desafiocielo.services.exceptions.AutorizacaoExcecao;
 import br.com.elo.desafiocielo.services.exceptions.ObjetoNaoEncontradoExcecao;
 import br.com.elo.desafiocielo.services.exceptions.ViolacaoIntegridadeDadoExcecao;
 
+/**
+ * 
+ * @author Gláucio Teixeira
+ * @since 09/04/2020
+ * @serial 1.0
+ *
+ */
 
 @Service
 public class ClienteService {
@@ -36,13 +42,6 @@ public class ClienteService {
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
-	
-	
-	@Value("${img.prefix.client.profile}")
-	private String prefixo;
-	
-	@Value("${img.profile.size}")
-	private Integer size;
 	
 	public Cliente buscarId(Integer id) {
 		UserSpringSecurity user = UserService.authenticated();

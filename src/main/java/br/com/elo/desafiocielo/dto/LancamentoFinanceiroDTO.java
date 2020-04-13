@@ -1,5 +1,13 @@
 package br.com.elo.desafiocielo.dto;
 
+/**
+ * 
+ * @author Gláucio Teixeira
+ * @since 09/04/2020
+ * @serial 1.0
+ *
+ */
+
 import java.io.Serializable;
 
 import lombok.Getter;

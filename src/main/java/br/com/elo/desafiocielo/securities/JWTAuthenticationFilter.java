@@ -20,6 +20,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.elo.desafiocielo.dto.CredencialDTO;
 
+/**
+ * 
+ * @author Gláucio Teixeira
+ * @since 09/04/2020
+ * @serial 1.0
+ *
+ */
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 	

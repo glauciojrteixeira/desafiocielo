@@ -10,6 +10,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import br.com.elo.desafiocielo.domains.enums.TipoPerfil;
 
+/**
+ * 
+ * @author Gláucio Teixeira
+ * @since 09/04/2020
+ * @serial 1.0
+ *
+ */
 
 public class UserSpringSecurity implements UserDetails {
 

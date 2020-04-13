@@ -21,6 +21,14 @@ import br.com.elo.desafiocielo.services.exceptions.APIVersionExcecao;
 import br.com.elo.desafiocielo.services.exceptions.ViolacaoIntegridadeDadoExcecao;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * 
+ * @author Gláucio Teixeira
+ * @since 09/04/2020
+ * @serial 1.0
+ *
+ */
+
 @Slf4j
 @Service
 public class DomicilioBancarioService {

@@ -1,5 +1,13 @@
 package br.com.elo.desafiocielo.filters;
 
+/**
+ * 
+ * @author Gláucio Teixeira
+ * @since 09/04/2020
+ * @serial 1.0
+ *
+ */
+
 import java.io.IOException;
 
 import javax.servlet.Filter;

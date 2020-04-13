@@ -16,11 +16,20 @@ import br.com.elo.desafiocielo.dto.ClienteDTO;
 import br.com.elo.desafiocielo.repositories.ClienteRepository;
 import br.com.elo.desafiocielo.resources.exceptions.FieldMessage;
 
-
-//Anotações Customizadas para atualizar registros 
+/**
+ * 
+ * @author Gláucio Teixeira
+ * @since 09/04/2020
+ * @serial 1.0
+ *
+ */
 
 public class ClienteUpdateACValidator implements ConstraintValidator<ClienteUpdateAC, ClienteDTO>{
 
+	/*
+	 * Anotações Customizadas para novos registros
+	 */
+	
 	@Autowired
 	private HttpServletRequest request;
 	

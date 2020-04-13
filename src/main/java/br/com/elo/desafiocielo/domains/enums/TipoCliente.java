@@ -1,5 +1,13 @@
 package br.com.elo.desafiocielo.domains.enums;
 
+/**
+ * 
+ * @author Gláucio Teixeira
+ * @since 09/04/2020
+ * @serial 1.0
+ *
+ */
+
 public enum TipoCliente {
 	PESSOAFISICA(1, "Pessoa Física"),
 	PESSOAJURIDICA(2, "Pessoa Jurídica");

@@ -2,6 +2,14 @@ package br.com.elo.desafiocielo.dto;
 
 import java.io.Serializable;
 
+/**
+ * 
+ * @author Gláucio Teixeira
+ * @since 09/04/2020
+ * @serial 1.0
+ *
+ */
+
 public class CredencialDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;

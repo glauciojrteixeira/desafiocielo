@@ -19,7 +19,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import br.com.elo.desafiocielo.domains.enums.TipoCliente;
 import br.com.elo.desafiocielo.domains.enums.TipoPerfil;
 
-
+/**
+ * 
+ * @author Gláucio Teixeira
+ * @since 09/04/2020
+ * @serial 1.0
+ *
+ */
 
 @Entity
 public class Cliente implements Serializable {

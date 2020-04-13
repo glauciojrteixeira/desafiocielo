@@ -12,6 +12,13 @@ import br.com.elo.desafiocielo.domains.enums.TipoCliente;
 import br.com.elo.desafiocielo.domains.enums.TipoPerfil;
 import br.com.elo.desafiocielo.repositories.ClienteRepository;
 
+/**
+ * 
+ * @author Gláucio Teixeira
+ * @since 09/04/2020
+ * @serial 1.0
+ *
+ */
 
 @Service
 public class DatabaseService {

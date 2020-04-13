@@ -7,6 +7,14 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
+/**
+ * 
+ * @author Gláucio Teixeira
+ * @since 09/04/2020
+ * @serial 1.0
+ *
+ */
+
 public class EmailDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;

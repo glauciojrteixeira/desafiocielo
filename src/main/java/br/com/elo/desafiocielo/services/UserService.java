@@ -4,6 +4,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import br.com.elo.desafiocielo.securities.UserSpringSecurity;
 
+/**
+ * 
+ * @author Gláucio Teixeira
+ * @since 09/04/2020
+ * @serial 1.0
+ *
+ */
 
 public class UserService {
 

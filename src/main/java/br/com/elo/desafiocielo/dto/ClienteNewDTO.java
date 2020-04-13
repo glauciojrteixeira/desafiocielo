@@ -9,6 +9,14 @@ import org.hibernate.validator.constraints.Length;
 
 import br.com.elo.desafiocielo.services.validations.ClienteNewAC;
 
+/**
+ * 
+ * @author Gláucio Teixeira
+ * @since 09/04/2020
+ * @serial 1.0
+ *
+ */
+
 @ClienteNewAC
 public class ClienteNewDTO implements Serializable {
 

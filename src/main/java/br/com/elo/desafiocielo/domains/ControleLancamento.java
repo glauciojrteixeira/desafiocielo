@@ -23,9 +23,6 @@ import lombok.ToString;
  * @author Gláucio Teixeira
  * @since 09/04/2020
  * @serial 1.0
- *
- * Hashcode and equals, construtor padrao e toString 
- * anotados na classe
  * 
  */
 

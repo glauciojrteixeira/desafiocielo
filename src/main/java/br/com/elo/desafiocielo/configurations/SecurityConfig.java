@@ -1,5 +1,13 @@
 package br.com.elo.desafiocielo.configurations;
 
+/**
+ * 
+ * @author Gláucio Teixeira
+ * @since 09/04/2020
+ * @serial 1.0
+ *
+ */
+
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,9 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 * estarão liberados somente para leitura
 	 */
 	private static final String[] PUBLIC_MATCHERS_GET = {
-		"/produtos/**",
-		"/categorias/**",
-		"/estados/**"
+		"/domicilio-bancarios/**"
 	};
 	
 	/**
@@ -65,7 +71,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		"/authentication/forgot/**"
 	};
 	
-	/*
+	/**
 	 * Vetor de string para definir quais os caminhos 
 	 * estarão liberados para o Swagger UI.
 	 */
@@ -77,7 +83,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     };
 	
 	
-	/*
+	/**
 	 * Libera acessos aos caminhos do Swagger
 	 */
 	@Override
