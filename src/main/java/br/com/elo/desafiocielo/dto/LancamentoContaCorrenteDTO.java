@@ -1,11 +1,9 @@
 package br.com.elo.desafiocielo.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.validation.constraints.NotEmpty;
-
-import br.com.elo.desafiocielo.domains.LancamentoContaCorrente;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,12 +13,10 @@ import lombok.Setter;
  * @author Gláucio Teixeira
  * @since 09/04/2020
  * @serial 1.0
- *
- * Construtores padrões anotados na classe
  * 
  */
 
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor
 public class LancamentoContaCorrenteDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -28,26 +24,24 @@ public class LancamentoContaCorrenteDTO implements Serializable {
 	/**
 	 * Atributos
 	 */
-	@Getter @Setter private Integer id;
-	
-	@NotEmpty(message = "Preenchimento obrigatório!")
 	@Getter @Setter private Long numeroRemessaBanco;
-	
-	@NotEmpty(message = "Preenchimento obrigatório!")
 	@Getter @Setter private String nomeSituacaoRemessa;
-	
-	@NotEmpty(message = "Preenchimento obrigatório!")
 	@Getter @Setter private String nomeTipoOperacao;
+	
+	@Getter @Setter private DomicilioBancarioDTO dadosDomicilioBancario;
+	
+	@Getter @Setter private List<LancamentoFinanceiroDTO> dadosAnaliticoLancamentoFinanceiroCliente = new ArrayList<>();
 	
 	/**
 	 * Construtor
-	 * @param lancamentoContaCorrenteCliente
+	 * @param lancamentoContaCorrenteDTO
 	 */
-	public LancamentoContaCorrenteDTO(LancamentoContaCorrente lancamentoContaCorrente) {
-		this.id = lancamentoContaCorrente.getId();
-		this.numeroRemessaBanco = lancamentoContaCorrente.getNumeroRemessaBanco();
-		this.nomeSituacaoRemessa = lancamentoContaCorrente.getNomeSituacaoRemessa();
-		this.nomeTipoOperacao = lancamentoContaCorrente.getNomeTipoOperacao();
+	public LancamentoContaCorrenteDTO(LancamentoContaCorrenteDTO lancamentoContaCorrenteDTO) {
+		this.numeroRemessaBanco = lancamentoContaCorrenteDTO.getNumeroRemessaBanco();
+		this.nomeSituacaoRemessa = lancamentoContaCorrenteDTO.getNomeSituacaoRemessa();
+		this.nomeTipoOperacao = lancamentoContaCorrenteDTO.getNomeTipoOperacao();
+		this.dadosDomicilioBancario = lancamentoContaCorrenteDTO.getDadosDomicilioBancario();
+		this.dadosAnaliticoLancamentoFinanceiroCliente = lancamentoContaCorrenteDTO.getDadosAnaliticoLancamentoFinanceiroCliente();
 	}
 
 }

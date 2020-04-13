@@ -3,10 +3,8 @@ package br.com.elo.desafiocielo.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.validation.constraints.NotEmpty;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-import br.com.elo.desafiocielo.domains.ControleLancamento;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,9 +17,7 @@ import lombok.Setter;
  *
  */
 
-// Construtores padrões anotados na classe 
-
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor 
 public class ControleLancamentoDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -29,62 +25,42 @@ public class ControleLancamentoDTO implements Serializable {
 	/**
 	 * Atributos
 	 */
-	@Getter @Setter private Integer id;
-	
-	@NotEmpty(message = "Preenchimento obrigatório!")
+	@JsonFormat(pattern = "dd/MM/yyyy", timezone="America/Sao_Paulo")
 	@Getter @Setter private Date dataEfetivaLancamento;
-	
-	@NotEmpty(message = "Preenchimento obrigatório!")
+	@JsonFormat(pattern = "dd/MM/yyyy", timezone="America/Sao_Paulo")
 	@Getter @Setter private Date dataLancamentoContaCorrenteCliente;
-		
-	@NotEmpty(message = "Preenchimento obrigatório!")
+	
 	@Getter @Setter private Long numeroEvento;
-	
-	@NotEmpty(message = "Preenchimento obrigatório!")
 	@Getter @Setter private String descricaoGrupoPagamento;
-	
-	@NotEmpty(message = "Preenchimento obrigatório!")
 	@Getter @Setter private Integer codigoIdentificadorUnico;
-	
-	@NotEmpty(message = "Preenchimento obrigatório!")
 	@Getter @Setter private String nomeBanco;
-	
-	@NotEmpty(message = "Preenchimento obrigatório!")
 	@Getter @Setter private Integer quantidadeLancamentoRemessa;
-	
-	@NotEmpty(message = "Preenchimento obrigatório!")
 	@Getter @Setter private String numeroRaizCNPJ;
-	
-	@NotEmpty(message = "Preenchimento obrigatório!")
 	@Getter @Setter private String numeroSufixoCNPJ;
-	
-	@NotEmpty(message = "Preenchimento obrigatório!")
 	@Getter @Setter private Float valorLancamentoRemessa;
-	
-	@NotEmpty(message = "Preenchimento obrigatório!")
 	@Getter @Setter private Long dateLancamentoContaCorrenteCliente;
-	
-	@NotEmpty(message = "Preenchimento obrigatório!")
 	@Getter @Setter private Long dateEfetivaLancamento;
+	
+	@Getter @Setter private LancamentoContaCorrenteDTO lancamentoContaCorrenteCliente;
 	
 	/**
 	 * Construtor
-	 * @param controleLancamento
+	 * @param controleLancamentoDTO
 	 */
-	public ControleLancamentoDTO(ControleLancamento controleLancamento) {
-		this.id = controleLancamento.getId();
-		this.dataEfetivaLancamento = controleLancamento.getDataEfetivaLancamento();
-		this.dataLancamentoContaCorrenteCliente = controleLancamento.getDataLancamentoContaCorrenteCliente();
-		this.numeroEvento = controleLancamento.getNumeroEvento();
-		this.descricaoGrupoPagamento = controleLancamento.getDescricaoGrupoPagamento();
-		this.codigoIdentificadorUnico = controleLancamento.getCodigoIdentificadorUnico();
-		this.nomeBanco = controleLancamento.getNomeBanco();
-		this.quantidadeLancamentoRemessa = controleLancamento.getQuantidadeLancamentoRemessa();
-		this.numeroRaizCNPJ = controleLancamento.getNumeroRaizCNPJ();
-		this.numeroSufixoCNPJ = controleLancamento.getNumeroSufixoCNPJ();
-		this.valorLancamentoRemessa = controleLancamento.getValorLancamentoRemessa();
-		this.dateLancamentoContaCorrenteCliente = controleLancamento.getDateLancamentoContaCorrenteCliente();
-		this.dateEfetivaLancamento = controleLancamento.getDateEfetivaLancamento();
+	public ControleLancamentoDTO(ControleLancamentoDTO controleLancamentoDTO) {		
+		this.dataEfetivaLancamento = controleLancamentoDTO.getDataEfetivaLancamento();
+		this.dataLancamentoContaCorrenteCliente = controleLancamentoDTO.getDataLancamentoContaCorrenteCliente();
+		this.numeroEvento = controleLancamentoDTO.getNumeroEvento();
+		this.descricaoGrupoPagamento = controleLancamentoDTO.getDescricaoGrupoPagamento();
+		this.codigoIdentificadorUnico = controleLancamentoDTO.getCodigoIdentificadorUnico();
+		this.nomeBanco = controleLancamentoDTO.getNomeBanco();
+		this.quantidadeLancamentoRemessa = controleLancamentoDTO.getQuantidadeLancamentoRemessa();
+		this.numeroRaizCNPJ = controleLancamentoDTO.getNumeroRaizCNPJ();
+		this.numeroSufixoCNPJ = controleLancamentoDTO.getNumeroSufixoCNPJ();
+		this.valorLancamentoRemessa = controleLancamentoDTO.getValorLancamentoRemessa();
+		this.dateLancamentoContaCorrenteCliente = controleLancamentoDTO.getDateLancamentoContaCorrenteCliente();
+		this.dateEfetivaLancamento = controleLancamentoDTO.getDateEfetivaLancamento();
+		this.lancamentoContaCorrenteCliente = controleLancamentoDTO.getLancamentoContaCorrenteCliente();
 	}
 
 }

@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -31,12 +32,13 @@ public class DomicilioBancarioService {
 	/*
 	 * Atributo
 	 */
-	private final String API_VERSION_DEFAULT = "1.0";
+	@Value("${api.version.default}")
+	private String apiVersionDefault;
 	
 	public DomicilioBancario buscarId(String version, Integer id) {
 		log.info("");
 		
-		version = version.equals("0") ? API_VERSION_DEFAULT : version;
+		version = version.equals("0") ? apiVersionDefault : version;
 		
 		if (version.equals("1.0")) {
 			Optional<DomicilioBancario> obj = domicilioBancarioRepo.findById(id);
@@ -51,6 +53,8 @@ public class DomicilioBancarioService {
 	
 	public List<DomicilioBancario> buscarTodas(String version) {
 		log.info("");
+		
+		version = version.equals("0") ? apiVersionDefault : version;
 		
 		if (version.equals("1.0")) {
 			return domicilioBancarioRepo.findAll();
@@ -67,6 +71,8 @@ public class DomicilioBancarioService {
 		
 		log.info("");
 		
+		version = version.equals("0") ? apiVersionDefault : version;
+		
 		if (version.equals("1.0")) {
 			return domicilioBancarioRepo.findAll(pageRequest);
 		} else {
@@ -79,6 +85,8 @@ public class DomicilioBancarioService {
 	@Transactional
 	public DomicilioBancario guardarEntidade(String version, DomicilioBancario entity) {
 		log.info("");
+		
+		version = version.equals("0") ? apiVersionDefault : version;
 		
 		if (version.equals("1.0")) {
 			entity.setId(null);
@@ -95,6 +103,8 @@ public class DomicilioBancarioService {
 	public DomicilioBancario atualizarEntidade(String version, DomicilioBancario entity) {
 		log.info("");
 		
+		version = version.equals("0") ? apiVersionDefault : version;
+		
 		if (version.equals("1.0")) {
 			DomicilioBancario newEntity = buscarId(version, entity.getId());
 			atualizaNovoVelho(version, newEntity, entity);
@@ -108,6 +118,8 @@ public class DomicilioBancarioService {
 	@Transactional
 	public void removerId(String version, Integer id) {
 		log.info("");
+		
+		version = version.equals("0") ? apiVersionDefault : version;
 		
 		if (version.equals("1.0")) {
 			buscarId(version, id);
@@ -130,22 +142,25 @@ public class DomicilioBancarioService {
 	public DomicilioBancario fromDTO(String version, DomicilioBancarioDTO objetoDTO) {
 		log.info("");
 		
+		version = version.equals("0") ? apiVersionDefault : version;
+		
 		if (version.equals("1.0")) {
 			return new DomicilioBancario(
-					objetoDTO.getId(), 
+					null,
 					objetoDTO.getCodigoBanco(), 
 					objetoDTO.getNumeroAgencia(), 
+					objetoDTO.getNumeroContaCorrente(),
 					null);
 		} else {
 			throw new APIVersionExcecao("Versão da API informada não encontrada!");
 		}
-		
-		
 	}
 	
 	// Metodo para manter atualizado os dados que não serão modificados pela entrada no sistema.
 	private void atualizaNovoVelho(String version, DomicilioBancario newEntity, DomicilioBancario entity) {
 		log.info("");
+		
+		version = version.equals("0") ? apiVersionDefault : version;
 		
 		if (version.equals("1.0")) {
 			newEntity.setCodigoBanco(entity.getCodigoBanco());

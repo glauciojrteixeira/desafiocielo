@@ -1,5 +1,7 @@
 package br.com.elo.desafiocielo.repositories;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,4 +13,10 @@ public interface DomicilioBancarioRepository extends JpaRepository<DomicilioBanc
 	 * Ao extender JpaRepository é passado como tipo a classe de dominio já mapeada (JPA) e o tipo do 
 	 * atributo identificador do objeto, que no cado é o Integer (id). 
 	 */
+	
+	// Assinatura do metodo que será implementado automaticamente pelo framework
+	@Transactional()
+	DomicilioBancario findByCodigoBancoAndNumeroAgenciaAndNumeroContaCorrente(
+			String codigoBanco, String numeroAgencia, String numeroContaCorrente);
+	
 }

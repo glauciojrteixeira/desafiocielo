@@ -1,6 +1,5 @@
 package br.com.elo.desafiocielo.services;
 
-import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import br.com.elo.desafiocielo.domains.Categoria;
 import br.com.elo.desafiocielo.domains.Cliente;
-import br.com.elo.desafiocielo.domains.ContaCorrente;
 import br.com.elo.desafiocielo.domains.ControleLancamento;
 import br.com.elo.desafiocielo.domains.DomicilioBancario;
 import br.com.elo.desafiocielo.domains.Endereco;
@@ -30,7 +28,6 @@ import br.com.elo.desafiocielo.domains.enums.TipoCliente;
 import br.com.elo.desafiocielo.domains.enums.TipoPerfil;
 import br.com.elo.desafiocielo.repositories.CategoriaRepository;
 import br.com.elo.desafiocielo.repositories.ClienteRepository;
-import br.com.elo.desafiocielo.repositories.ContaCorrenteRepository;
 import br.com.elo.desafiocielo.repositories.ControleLancamentoRepository;
 import br.com.elo.desafiocielo.repositories.DomicilioBancarioRepository;
 import br.com.elo.desafiocielo.repositories.EnderecoRepository;
@@ -72,8 +69,6 @@ public class DatabaseService {
 	@Autowired
 	private DomicilioBancarioRepository domicilioBancarioRepo;
 	@Autowired
-	private ContaCorrenteRepository contaCorrenteRepo;
-	@Autowired
 	private ControleLancamentoRepository controleLancamentoRepo;
 	@Autowired
 	private LancamentoContaCorrenteRepository lancamentoContaCorrenteRepo;
@@ -92,24 +87,15 @@ public class DatabaseService {
 		SimpleDateFormat sdfSemHora = new SimpleDateFormat("dd/MM/yyyy");
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		
-		
-		DomicilioBancario domicilioBancario_01 = new DomicilioBancario(null, "123", "1", null);
-		DomicilioBancario domicilioBancario_02 = new DomicilioBancario(null, "123", "2", null);
-		DomicilioBancario domicilioBancario_03 = new DomicilioBancario(null, "321", "1", null);
-		domicilioBancarioRepo.saveAll(Arrays.asList(domicilioBancario_01, domicilioBancario_02, 
-				domicilioBancario_03));
+		/*
+		DomicilioBancario domicilioBancario_01 = new DomicilioBancario(null, "123", "1", "00000000065470", null);
+		DomicilioBancario domicilioBancario_02 = new DomicilioBancario(null, "123", "2", "00000000065400", null);
+		domicilioBancarioRepo.saveAll(Arrays.asList(domicilioBancario_01, domicilioBancario_02));
 		
 		
-		ContaCorrente contaCorrente_01 = new ContaCorrente(null, "00000000065470", domicilioBancario_01, null);
-		ContaCorrente contaCorrente_02 = new ContaCorrente(null, "00000000065400", domicilioBancario_01, null);
-		ContaCorrente contaCorrente_03 = new ContaCorrente(null, "00000000065401", domicilioBancario_01, null);
-		ContaCorrente contaCorrente_04 = new ContaCorrente(null, "00000000065402", domicilioBancario_01, null);
-		contaCorrenteRepo.saveAll(Arrays.asList(contaCorrente_01, contaCorrente_02, contaCorrente_03, 
-				contaCorrente_04));
 		
-		
-		LancamentoContaCorrente lancamentoContaCorrente_01 = new LancamentoContaCorrente(null, 64320236054L, "Pago", "regular", contaCorrente_01, null, null);
-		LancamentoContaCorrente lancamentoContaCorrente_02 = new LancamentoContaCorrente(null, 64320236054L, "Pago", "regular", contaCorrente_01, null, null);
+		LancamentoContaCorrente lancamentoContaCorrente_01 = new LancamentoContaCorrente(null, 64320236054L, "Pago", "regular", domicilioBancario_01, null, null);
+		LancamentoContaCorrente lancamentoContaCorrente_02 = new LancamentoContaCorrente(null, 64320236054L, "Pago", "regular", domicilioBancario_01, null, null);
 		lancamentoContaCorrenteRepo.saveAll(Arrays.asList(lancamentoContaCorrente_01, lancamentoContaCorrente_02));
 		
 		
@@ -122,7 +108,7 @@ public class DatabaseService {
 		ControleLancamento controleLancamento_02 = new ControleLancamento(null, sdfSemHora.parse("02/06/2016"), sdfSemHora.parse("02/06/2016"), 42592397L, "LA-56", 25, 
 				"BANCO ABCD S.A.             ", 2, "12996721", "1597", 1960.0F, 1464836400000L, 1464836400000L, lancamentoContaCorrente_02);
 		controleLancamentoRepo.saveAll(Arrays.asList(controleLancamento_01, controleLancamento_02));
-		
+		*/
 		
 		/*
 		 * 

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -50,8 +51,8 @@ public class LancamentoContaCorrente implements Serializable {
 	 * Mapeamentos - Cardinalidades
 	 */
 	@ManyToOne
-	@JoinColumn(name = "contaCorrente_id")
-	@Getter @Setter private ContaCorrente contaCorrente;
+	@JoinColumn(name = "domicilioBancario_id")
+	@Getter @Setter private DomicilioBancario domicilioBancario;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "lancamentoContaCorrente")

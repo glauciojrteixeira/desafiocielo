@@ -1,11 +1,7 @@
 package br.com.elo.desafiocielo.dto;
 
 import java.io.Serializable;
-import java.util.Date;
 
-import javax.validation.constraints.NotEmpty;
-
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,9 +14,7 @@ import lombok.Setter;
  *
  */
 
-// Construtores padrões anotados na classe 
-
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor
 public class ControleLancamentoTotalDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -28,13 +22,18 @@ public class ControleLancamentoTotalDTO implements Serializable {
 	/**
 	 * Atributos
 	 */	
-	@NotEmpty(message = "Preenchimento obrigatório!")
 	@Getter @Setter private Integer quantidadeLancamentos;
-	
-	@NotEmpty(message = "Preenchimento obrigatório!")
 	@Getter @Setter private Integer quantidadeRemessas;
-	
-	@NotEmpty(message = "Preenchimento obrigatório!")
 	@Getter @Setter private Float valorLancamentos;
+	
+	/**
+	 * Contrutor
+	 * @param controleLancamentoTotalDTO
+	 */
+	public ControleLancamentoTotalDTO(ControleLancamentoTotalDTO controleLancamentoTotalDTO) {
+		this.quantidadeLancamentos = controleLancamentoTotalDTO.getQuantidadeLancamentos();
+		this.quantidadeRemessas = controleLancamentoTotalDTO.getQuantidadeRemessas();
+		this.valorLancamentos = controleLancamentoTotalDTO.getValorLancamentos();
+	}
 
 }
