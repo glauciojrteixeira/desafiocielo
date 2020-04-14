@@ -27,4 +27,17 @@ public interface DomicilioBancarioRepository extends JpaRepository<DomicilioBanc
 	DomicilioBancario findByCodigoBancoAndNumeroAgenciaAndNumeroContaCorrente(
 			String codigoBanco, String numeroAgencia, String numeroContaCorrente);
 	
+//	@Transactional
+//	//@Query("SELECT DISTINCT obj FROM Produto obj INNER JOIN obj.categorias cat WHERE obj.nome LIKE %:nome% AND cat IN :categorias")
+//	@Query("SELECT DISTINCT obj, lcc FROM ControleLancamento obj INNER JOIN obj.lancamentoContaCorrente lcc INNER JOIN lcc.domicilioBancario")
+//	List<List<Object[]>> procurarExtrato();
+	
+	
+
+	
+	/* Mesmo resultado da consulta acima usando o padrão de nomes do framework 
+	 * 
+	 * Page<Produto> findDistinctByNomeContainingAndCategoriasIn(String nome, List<Categoria> categorias, Pageable pageRequest);
+	 */
+	
 }

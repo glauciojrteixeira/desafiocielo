@@ -53,11 +53,9 @@ public class DatabaseService {
 		Cliente cli1 = new Cliente(null, "Gláucio Júnior Teixeira", "glaucio.teixeira@outlook.com", "36378912377", TipoCliente.PESSOAFISICA, passwordEncoder.encode("123"));
 		cli1.getTelefones().addAll(Arrays.asList("31999500593", "93838393"));
 		
-		Cliente cli2 = new Cliente(null, "Alexsandra Silva da Costa", "alexsandra.costa1702@gmail.com", "31628382740", TipoCliente.PESSOAFISICA, passwordEncoder.encode("123"));
-		cli2.getTelefones().addAll(Arrays.asList("31999117270"));
-		cli2.addTipoPerfil(TipoPerfil.ADMIN);
+		cli1.addTipoPerfil(TipoPerfil.ADMIN);
 		
-		clienteRepo.saveAll(Arrays.asList(cli1, cli2));
+		clienteRepo.saveAll(Arrays.asList(cli1));
 		
 		/*
 		DomicilioBancario domicilioBancario_01 = new DomicilioBancario(null, "123", "1", "00000000065470", null);

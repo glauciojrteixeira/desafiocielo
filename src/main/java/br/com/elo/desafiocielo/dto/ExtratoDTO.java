@@ -1,6 +1,7 @@
 package br.com.elo.desafiocielo.dto;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -29,7 +30,7 @@ public class ExtratoDTO implements Serializable {
 	@Getter @Setter private Date dataLancamentoContaCorrenteCliente;
 	
 	@Getter @Setter private String nomeTipoOperacao;
-	@Getter @Setter private Long numeroRemessaBanco;
+	@Getter @Setter private BigInteger numeroRemessaBanco;
 	@Getter @Setter private String nomeSituacaoRemessa;
 	
 	@JsonFormat(pattern = "dd/MM/yyyy", timezone="America/Sao_Paulo")
@@ -38,7 +39,7 @@ public class ExtratoDTO implements Serializable {
 	@Getter @Setter private String nomeBanco;
 	@Getter @Setter private String numeroAgencia;
 	@Getter @Setter private String numeroContaCorrente;
-	@Getter @Setter private Float valorLancamentoRemessa;
+	@Getter @Setter private Double valorLancamentoRemessa;
 	
 	
 	/**
